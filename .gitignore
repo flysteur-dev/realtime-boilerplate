@@ -1,0 +1,5 @@
+node_modules/
+dist/
+rethinkdb_data/
+
+npm-debug.log

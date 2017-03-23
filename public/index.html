@@ -1,0 +1,16 @@
+<html>
+	<body>
+		<ul id="container"></ul>
+		<script src=""></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+		<script>
+			var socket = io.connect('http://localhost:3000');
+			socket.on('article', function (data) {
+				var ul = document.getElementById("container");
+				var li = document.createElement("li");
+				li.innerHTML = data.title + " -- " + data.content;
+				ul.appendChild(li);
+			});
+		</script>
+	</body>
+</html>
