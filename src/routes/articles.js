@@ -1,35 +1,40 @@
 import express from 'express';
 
-var r      = require('rethinkdbdash')();
-var router = express.Router();
+let r         = require('rethinkdbdash')();
+let router    = express.Router();
+let is_stream = false;
 
 //MIDDLEWARE
 router.use((req, res, next) => {
-	//BEFORE
+
+	//RUN STREAM ONLY ONCE
+	if (!is_stream) {
+
+		//STREAM NEW CONTENTS
+		//RETHINKDB WILL NOTIFY US ON DB UPDATES
+		is_stream = true;
+		r.table('articles').changes()
+			.then ((results) => {
+
+				//FOR EARCH NEW/UPDATES ARTICLES
+				results.each((err, row) => {
+					if (err) console.error(err);
+
+					//NOTIFY WEBPAGE THROUGH WEBSOCKETS
+					io.emit('article', row.new_val);
+				});
+			});
+	}
 	next();
 });
 
 //LIST
 router.get('/', (req, res) => {
 
-	//RETURN ALL ARTICLES
+	//RETURN ALL ARTICLES ORDERED
 	r.table('articles').orderBy(r.desc('date')).run()
 		.error(()         => res.status(500).send())
 		.then ((articles) => res.status(200).json(articles));
-
-	//STREAM NEW CONTENTS
-	r.table('articles').changes()
-		.error(() => res.status(500).send())
-		.then ((results) => {
-
-			//For new/updated articles
-			results.each((err, row) => {
-				if (err) console.error(err);
-				
-				//Notify webpage
-				io.emit('article', row.new_val);
-			});
-		});
 });
 
 //ADD ARTICLE
@@ -41,6 +46,7 @@ router.post('/add', (req, res) => {
 		link:    req.body.link
 	};
 
+	//ADD NEW ARTICLE WILL TRIGGER DB CHANGES EVENTS
 	r.table('articles').insert(article).run()
 		.error(()  => res.status(500).send())
 		.then((db) => res.status(200).json(db.generated_keys));

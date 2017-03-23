@@ -2,9 +2,9 @@
 
 Build a fast simple maintainable realtime application using (ES6, NodeJS, RethinkDB, React and Socket.io)
 
-#1 - install rethinkdb
+#1 - install db
 
-sudo apt-get install rethinkdb python-pip
+sudo apt-get install -y rethinkdb python-pip curl
 sudo pip install rethinkdb (python driver for importing table andsample data)
 
 #2 - dependencies
