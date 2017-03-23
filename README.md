@@ -4,7 +4,7 @@ Build a fast simple maintainable realtime application using (ES6, NodeJS, Rethin
 
 #1 - install rethinkdb
 
-sudo apt-get install rethinkdb python-pip
+sudo apt-get install rethinkdb python-pip <br />
 sudo pip install rethinkdb (python driver for importing table andsample data)
 
 #2 - dependencies
@@ -13,7 +13,7 @@ npm install
 
 #3 - run
 
-npm run-script rundb
+npm run-script rundb <br />
 npm run-script dev
 
 #4 - play
