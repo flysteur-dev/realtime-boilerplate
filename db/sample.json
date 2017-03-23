@@ -1,0 +1,14 @@
+[
+	{
+		"title"   : "First article",
+		"content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"link"    : "https://www.google.fr",
+		"date"    : 1490137200
+	},
+	{
+		"title"   : "Second article",
+		"content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"link"    : "https://www.google.fr",
+		"date"    : 1490305315	
+	}
+]
