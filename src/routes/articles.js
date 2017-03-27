@@ -43,7 +43,8 @@ router.post('/add', (req, res) => {
 	let article = {
 		title:   req.body.title,
 		content: req.body.content,
-		link:    req.body.link
+		link:    req.body.link,
+		date:    + new Date()
 	};
 
 	//ADD NEW ARTICLE WILL TRIGGER DB CHANGES EVENTS
