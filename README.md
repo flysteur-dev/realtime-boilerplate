@@ -14,7 +14,8 @@ npm install
 #3 - run
 
 npm run-script rundb <br />
-npm run-script dev
+npm run-script build <br />
+npm run-script start
 
 #4 - play
 
@@ -22,4 +23,6 @@ Open http://localhost:3000/static
 
 Then add an article : 
 
-curl --data "title=title&content=content&link=it.works" http://localhost:3000/articles/add 
+curl --data "title=title&content=content&link=it.works" http://localhost:3000/articles/add
+
+New contents will appears on the top of the list, try it synchronously over multiple browsers.
